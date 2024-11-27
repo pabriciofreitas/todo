@@ -1,0 +1,1 @@
+export 'repository_shared_preferes_adapter.dart';
