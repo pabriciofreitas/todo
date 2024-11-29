@@ -1,11 +1,14 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class TaskEntity {
   int? id;
   String title;
   bool isCheck;
+  bool isEditing;
   TaskEntity({
     this.id,
     required this.title,
     this.isCheck = false,
+    this.isEditing = false,
   });
   // Converte o objeto em um Map (para JSON)
   Map<String, dynamic> toJson() {
@@ -24,11 +27,17 @@ class TaskEntity {
       isCheck: json['isCheck'],
     );
   }
-  copyWith({int? id, String? title, bool? isCheck}) {
+  copyWith({int? id, String? title, bool? isCheck, bool? isEditing}) {
     return TaskEntity(
       id: id ?? this.id,
       title: title ?? this.title,
       isCheck: isCheck ?? this.isCheck,
+      isEditing: isEditing ?? this.isEditing,
     );
+  }
+
+  @override
+  String toString() {
+    return 'TaskEntity(id: $id, title: $title, isCheck: $isCheck, isEditing: $isEditing)';
   }
 }

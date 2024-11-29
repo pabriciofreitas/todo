@@ -5,10 +5,10 @@ import '../../components/to_do/filter_to_do.dart';
 
 abstract class ToDoListPresenter extends ChangeNotifier {
   List<TaskEntity> get listTask;
-  bool get openDraggableScrollableSheet;
+  bool get isLoading;
+  bool isEditing();
   Future<void> addTask(TaskEntity newTask);
   void getListTask();
-  void openDra(bool value);
   Future<void> removeTask(int id);
   Future<void> changeFilterTask(TabFilterToDo filter);
   Future<void> editTask(TaskEntity task);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do/ui/assets/colors/colors.dart';
 
 enum TabFilterToDo { allTask, completed, incompleted }
 
@@ -35,11 +36,28 @@ class _FilterToDoState extends State<FilterToDo>
     return SizedBox(
       height: 50,
       child: TabBar(
+        dividerColor: Colors.transparent,
+        labelColor: AppColors.primary,
         controller: _tabController,
         tabs: const [
-          Tab(text: 'All task'),
-          Tab(text: 'Completed'),
-          Tab(text: 'Incompleted'),
+          Tab(
+            child: Text(
+              'All task',
+              style: TextStyle(color: AppColors.textPrimary),
+            ),
+          ),
+          Tab(
+            child: Text(
+              'Completed',
+              style: TextStyle(color: AppColors.textPrimary),
+            ),
+          ),
+          Tab(
+            child: Text(
+              'Incompleted',
+              style: TextStyle(color: AppColors.textPrimary),
+            ),
+          ),
         ],
       ),
     );

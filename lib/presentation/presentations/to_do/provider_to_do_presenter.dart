@@ -11,19 +11,20 @@ class ProviderToDoPresenter extends ChangeNotifier
   final List<TaskEntity> listTask = [];
 
   @override
-  bool openDraggableScrollableSheet = false;
-
-  @override
-  void openDra(bool value) {
-    openDraggableScrollableSheet = value;
-    notifyListeners();
-  }
+  bool isLoading = false;
 
   TabFilterToDo filter = TabFilterToDo.allTask;
   final ToDoListRepository repository;
   ProviderToDoPresenter({
     required this.repository,
-  });
+  }) {
+    getListTask();
+  }
+  @override
+  bool isEditing() {
+    return listTask.any((element) => element.isEditing);
+  }
+
   @override
   Future<void> addTask(TaskEntity newTask) async {
     final task = await repository.addTask(newTask);
@@ -44,6 +45,7 @@ class ProviderToDoPresenter extends ChangeNotifier
     listTask.removeAt(taskIndex);
     listTask.insert(taskIndex, task);
     notifyListeners();
+    print('aqui2');
   }
 
   @override
@@ -61,8 +63,8 @@ class ProviderToDoPresenter extends ChangeNotifier
 
   @override
   removeTask(int id) async {
-    await repository.removeTask(id);
-    listTask.where((element) => element.id == id);
+    listTask.removeWhere((element) => element.id == id);
     notifyListeners();
+    await repository.removeTask(id);
   }
 }
